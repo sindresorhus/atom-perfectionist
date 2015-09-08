@@ -1,0 +1,43 @@
+{
+  "name": "perfectionist",
+  "version": "0.0.0",
+  "description": "Beautify CSS",
+  "license": "MIT",
+  "repository": "sindresorhus/atom-perfectionist",
+  "private": true,
+  "activationCommands": {
+    "atom-workspace": "perfectionist:beautify-css"
+  },
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "atom": ">=1.0.0"
+  },
+  "scripts": {
+    "test": "xo"
+  },
+  "keywords": [
+    "css",
+    "style",
+    "format",
+    "beautify",
+    "pretty"
+  ],
+  "dependencies": {
+    "perfectionist": "^2.0.0",
+    "postcss": "^5.0.4",
+    "postcss-safe-parser": "^1.0.1"
+  },
+  "devDependencies": {
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true,
+    "globals": [
+      "atom"
+    ]
+  }
+}
