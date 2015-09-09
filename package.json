@@ -5,16 +5,16 @@
   "license": "MIT",
   "repository": "sindresorhus/atom-perfectionist",
   "private": true,
-  "activationCommands": {
-    "atom-workspace": "perfectionist:beautify-css"
-  },
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com"
   },
+  "activationCommands": {
+    "atom-workspace": "perfectionist:beautify-css"
+  },
   "engines": {
-    "atom": ">=1.0.0"
+    "atom": ">=1.0.11"
   },
   "scripts": {
     "test": "xo"

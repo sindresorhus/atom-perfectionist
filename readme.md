@@ -2,6 +2,8 @@
 
 > Beautify CSS with [Perfectionist](https://github.com/ben-eb/perfectionist)
 
+*Issues with the output should be reported on the Perfectionist [issue tracker](https://github.com/ben-eb/perfectionist/issues).*
+
 
 ## Install
 
@@ -9,7 +11,7 @@
 $ apm install perfectionist
 ```
 
-Or Settings → Install → Search for `perfectionist`
+Or, Settings → Install → Search for `perfectionist`
 
 
 ## Usage
