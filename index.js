@@ -19,10 +19,10 @@ function init() {
 	const text = selectedText || editor.getText();
 	const config = atom.config.get('perfectionist');
 
-	if (editor.getGrammar().scopeName === 'source.css.scss') {
-		Object.assign(config, {
-			syntax: 'scss'
-		});
+	config.syntax = 'scss';
+
+	if (editor.getGrammar().scopeName !== 'source.css.scss') {
+		delete config.syntax;
 	}
 
 	postcss(perfectionist()).process(text, {
