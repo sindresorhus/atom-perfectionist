@@ -83,6 +83,10 @@ export const config = {
 			'number'
 		],
 		default: 80
+	},
+	syntax: {
+		description: 'Use the SCSS syntax, to be able to format SCSS-style single line comments',
+		type: 'string'
 	}
 };
 
