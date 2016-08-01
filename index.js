@@ -3,6 +3,12 @@ import postcss from 'postcss';
 import perfectionist from 'perfectionist';
 import postcssSafeParser from 'postcss-safe-parser';
 
+const SUPPORTED_SCOPES = [
+	'source.css',
+	'source.css.less',
+	'source.css.scss'
+];
+
 function init() {
 	const editor = atom.workspace.getActiveTextEditor();
 
@@ -56,6 +62,11 @@ export const config = {
 			'compressed'
 		]
 	},
+	formatOnSave: {
+		description: 'Check the box to automatically format on save',
+		type: 'boolean',
+		default: false
+	},
 	indentSize: {
 		type: 'number',
 		default: 4
@@ -85,11 +96,22 @@ export const config = {
 		default: 80
 	},
 	syntax: {
-		description: 'Use the SCSS syntax, to be able to format SCSS-style single line comments',
-		type: 'string'
+		description: 'Set to \'scss\', to be able to format SCSS-style single line comments',
+		type: 'string',
+		default: ''
 	}
 };
 
 export const activate = () => {
+	atom.workspace.observeTextEditors(editor => {
+		editor.getBuffer().onWillSave(() => {
+			const isCSS = SUPPORTED_SCOPES.includes(editor.getGrammar().scopeName);
+
+			if (isCSS && atom.config.get('perfectionist.formatOnSave')) {
+				init(editor, true);
+			}
+		});
+	});
+
 	atom.commands.add('atom-workspace', 'perfectionist:beautify-css', init);
 };
