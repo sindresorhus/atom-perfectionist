@@ -17,7 +17,7 @@ function init() {
 
 	const selectedText = editor.getSelectedText();
 	const text = selectedText || editor.getText();
-	const config = atom.config.get('perfectionist');
+	let config = atom.config.get('perfectionist');
 
 	if(editor.getGrammar().scopeName === 'source.css.scss'){
 		Object.assign(config, {
