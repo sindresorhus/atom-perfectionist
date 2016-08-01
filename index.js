@@ -21,7 +21,7 @@ function init() {
 
 	config.syntax = 'scss';
 
-	if (editor.getGrammar().scopeName !== 'source.css.scss') {
+	if (editor.getGrammar().scopeName === 'source.css') {
 		delete config.syntax;
 	}
 
