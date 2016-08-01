@@ -18,8 +18,15 @@ function init() {
 
 	const selectedText = editor.getSelectedText();
 	const text = selectedText || editor.getText();
+	const config = atom.config.get('perfectionist');
 
-	postcss(perfectionist(atom.config.get('perfectionist'))).process(text, {
+	if(editor.getGrammar().scopeName === 'source.css.scss'){
+		Object.assign(config, {
+			syntax: 'scss'
+		});
+	}
+
+	postcss(perfectionist()).process(text, {
 		parser: postcssSafeParser
 	}).then(result => {
 		result.warnings().forEach(x => {
@@ -63,7 +70,6 @@ export const config = {
 		]
 	},
 	formatOnSave: {
-		description: 'Check the box to automatically format on save',
 		type: 'boolean',
 		default: false
 	},
@@ -94,11 +100,6 @@ export const config = {
 			'number'
 		],
 		default: 80
-	},
-	syntax: {
-		description: 'Set to \'scss\', to be able to format SCSS-style single line comments',
-		type: 'string',
-		default: ''
 	}
 };
 
