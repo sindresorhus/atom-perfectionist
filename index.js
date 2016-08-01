@@ -5,7 +5,6 @@ import postcssSafeParser from 'postcss-safe-parser';
 
 const SUPPORTED_SCOPES = [
 	'source.css',
-	'source.css.less',
 	'source.css.scss'
 ];
 
