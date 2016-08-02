@@ -20,6 +20,8 @@ Open the Command Palette and type `beautify css` or `perfectionist`.
 
 You can also select some CSS or SCSS in a HTML file and do the above.
 
+There's a `Format On Save` option and more in the settings.
+
 
 ## License
 
