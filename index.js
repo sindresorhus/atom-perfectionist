@@ -25,7 +25,7 @@ function init() {
 		delete config.syntax;
 	}
 
-	postcss(perfectionist()).process(text, {
+	postcss(perfectionist(config)).process(text, {
 		parser: postcssSafeParser
 	}).then(result => {
 		result.warnings().forEach(x => {
