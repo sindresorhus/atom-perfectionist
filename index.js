@@ -3,6 +3,11 @@ import postcss from 'postcss';
 import perfectionist from 'perfectionist';
 import postcssSafeParser from 'postcss-safe-parser';
 
+const SUPPORTED_SCOPES = new Set([
+	'source.css',
+	'source.css.scss'
+]);
+
 function init() {
 	const editor = atom.workspace.getActiveTextEditor();
 
@@ -12,8 +17,13 @@ function init() {
 
 	const selectedText = editor.getSelectedText();
 	const text = selectedText || editor.getText();
+	const config = atom.config.get('perfectionist');
 
-	postcss(perfectionist(atom.config.get('perfectionist'))).process(text, {
+	if (editor.getGrammar().scopeName !== 'source.css') {
+		config.syntax = 'scss';
+	}
+
+	postcss(perfectionist(config)).process(text, {
 		parser: postcssSafeParser
 	}).then(result => {
 		result.warnings().forEach(x => {
@@ -56,6 +66,10 @@ export const config = {
 			'compressed'
 		]
 	},
+	formatOnSave: {
+		type: 'boolean',
+		default: false
+	},
 	indentSize: {
 		type: 'number',
 		default: 4
@@ -87,5 +101,15 @@ export const config = {
 };
 
 export const activate = () => {
+	atom.workspace.observeTextEditors(editor => {
+		editor.getBuffer().onWillSave(() => {
+			const isCSS = SUPPORTED_SCOPES.has(editor.getGrammar().scopeName);
+
+			if (isCSS && atom.config.get('perfectionist.formatOnSave')) {
+				init(editor, true);
+			}
+		});
+	});
+
 	atom.commands.add('atom-workspace', 'perfectionist:beautify-css', init);
 };
