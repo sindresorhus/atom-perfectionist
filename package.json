@@ -1,7 +1,7 @@
 {
   "name": "perfectionist",
   "version": "1.0.1",
-  "description": "Beautify CSS",
+  "description": "Beautify CSS and SCSS",
   "license": "MIT",
   "repository": "sindresorhus/atom-perfectionist",
   "private": true,
@@ -21,10 +21,12 @@
   },
   "keywords": [
     "css",
-    "style",
-    "format",
+    "scss",
     "beautify",
-    "pretty"
+    "format",
+    "style",
+    "pretty",
+    "sass"
   ],
   "dependencies": {
     "perfectionist": "^2.0.0",

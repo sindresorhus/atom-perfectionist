@@ -8,14 +8,12 @@ const SUPPORTED_SCOPES = new Set([
 	'source.css.scss'
 ]);
 
-function init() {
-	const editor = atom.workspace.getActiveTextEditor();
-
+function init(editor, onSave) {
 	if (!editor) {
 		return;
 	}
 
-	const selectedText = editor.getSelectedText();
+	const selectedText = onSave ? null : editor.getSelectedText();
 	const text = selectedText || editor.getText();
 	const config = atom.config.get('perfectionist');
 
@@ -111,5 +109,7 @@ export const activate = () => {
 		});
 	});
 
-	atom.commands.add('atom-workspace', 'perfectionist:beautify-css', init);
+	atom.commands.add('atom-workspace', 'perfectionist:beautify-css', () => {
+		init(atom.workspace.getActiveTextEditor());
+	});
 };
