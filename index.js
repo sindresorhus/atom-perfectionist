@@ -3,10 +3,10 @@ import postcss from 'postcss';
 import perfectionist from 'perfectionist';
 import postcssSafeParser from 'postcss-safe-parser';
 
-const SUPPORTED_SCOPES = [
+const SUPPORTED_SCOPES = new Set([
 	'source.css',
 	'source.css.scss'
-];
+]);
 
 function init() {
 	const editor = atom.workspace.getActiveTextEditor();
@@ -103,7 +103,7 @@ export const config = {
 export const activate = () => {
 	atom.workspace.observeTextEditors(editor => {
 		editor.getBuffer().onWillSave(() => {
-			const isCSS = SUPPORTED_SCOPES.includes(editor.getGrammar().scopeName);
+			const isCSS = SUPPORTED_SCOPES.has(editor.getGrammar().scopeName);
 
 			if (isCSS && atom.config.get('perfectionist.formatOnSave')) {
 				init(editor, true);
