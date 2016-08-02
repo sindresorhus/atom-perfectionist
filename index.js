@@ -20,7 +20,7 @@ function init() {
 	const config = atom.config.get('perfectionist');
 
 	if (editor.getGrammar().scopeName !== 'source.css') {
-			config.syntax = 'scss';
+		config.syntax = 'scss';
 	}
 
 	postcss(perfectionist(config)).process(text, {
