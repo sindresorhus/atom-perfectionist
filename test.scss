@@ -1,2 +1,2 @@
-$font-stack: Helvetica, sans-serif;
-body{h1{font:100% $font-stack;}} // test
+$font-stack: Helvetica, sans-serif; // comment
+body{h1{font:100% /* comment */ $font-stack;}}

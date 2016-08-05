@@ -2,6 +2,7 @@
 import postcss from 'postcss';
 import perfectionist from 'perfectionist';
 import postcssSafeParser from 'postcss-safe-parser';
+import postcssScss from 'postcss-scss';
 
 const SUPPORTED_SCOPES = new Set([
 	'source.css',
@@ -16,14 +17,9 @@ function init(editor, onSave) {
 	const selectedText = onSave ? null : editor.getSelectedText();
 	const text = selectedText || editor.getText();
 	const config = atom.config.get('perfectionist');
+	const parser = editor.getGrammar().scopeName === 'source.css' ? postcssSafeParser : postcssScss;
 
-	if (editor.getGrammar().scopeName !== 'source.css') {
-		config.syntax = 'scss';
-	}
-
-	postcss(perfectionist(config)).process(text, {
-		parser: postcssSafeParser
-	}).then(result => {
+	postcss(perfectionist(config)).process(text, {parser}).then(result => {
 		result.warnings().forEach(x => {
 			console.warn(x.toString());
 			atom.notifications.addWarning('Perfectionist', {detail: x.toString()});
