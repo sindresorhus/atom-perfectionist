@@ -1,6 +1,6 @@
 {
   "name": "perfectionist",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Beautify CSS and SCSS",
   "license": "MIT",
   "repository": "sindresorhus/atom-perfectionist",
