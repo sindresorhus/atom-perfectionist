@@ -35,7 +35,10 @@
     "xo": "*"
   },
   "activationCommands": {
-    "atom-workspace": "perfectionist:beautify-css"
+    "atom-workspace": [
+      "core:save",
+      "perfectionist:beautify-css"
+    ]
   },
   "xo": {
     "esnext": true,
