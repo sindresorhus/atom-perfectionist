@@ -28,8 +28,8 @@
   "dependencies": {
     "perfectionist": "^2.0.0",
     "postcss": "^5.0.4",
-    "postcss-safe-parser": "^1.0.1",
-    "postcss-scss": "^0.1.9"
+    "postcss-safe-parser": "^2.0.0",
+    "postcss-scss": "^0.3.0"
   },
   "devDependencies": {
     "xo": "*"
