@@ -121,4 +121,4 @@ export function activate() {
 			init(editor);
 		}
 	}));
-};
+}
