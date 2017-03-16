@@ -26,7 +26,7 @@
     "sass"
   ],
   "dependencies": {
-    "perfectionist": "^2.0.0",
+    "perfectionist": "^2.4.0",
     "postcss": "^5.0.4",
     "postcss-safe-parser": "^2.0.0",
     "postcss-scss": "^0.4.0"
@@ -41,7 +41,6 @@
     ]
   },
   "xo": {
-    "esnext": true,
     "globals": [
       "atom"
     ]

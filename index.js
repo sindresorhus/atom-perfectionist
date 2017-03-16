@@ -16,6 +16,11 @@ function init(editor, onSave) {
 	const config = atom.config.get('perfectionist');
 	const parser = editor.getGrammar().scopeName === 'source.css' ? postcssSafeParser : postcssScss;
 
+	if (config.indentType === 'tab') {
+		config.indentChar = '\t';
+		config.indentSize = 1;
+	}
+
 	postcss(perfectionist(config)).process(text, {parser}).then(result => {
 		result.warnings().forEach(x => {
 			console.warn(x.toString());
@@ -48,8 +53,26 @@ function init(editor, onSave) {
 }
 
 export const config = {
+	formatOnSave: {
+		type: 'boolean',
+		default: false
+	},
 	cascade: {
 		description: 'Visual cascading of vendor prefixed properties. Note that this transform only applies to the `expanded` format.',
+		type: 'boolean',
+		default: true
+	},
+	colorCase: {
+		description: 'Transform hexadecimal colors to the chosen case.',
+		type: 'string',
+		default: 'lower',
+		enum: [
+			'lower',
+			'upper'
+		]
+	},
+	colorShorthand: {
+		description: 'Shorten hexadecimal colors.',
 		type: 'boolean',
 		default: true
 	},
@@ -63,13 +86,29 @@ export const config = {
 			'compressed'
 		]
 	},
-	formatOnSave: {
-		type: 'boolean',
-		default: false
+	indentType: {
+		description: 'Indentation character.',
+		type: 'string',
+		default: 'space',
+		enum: [
+			'space',
+			'tab'
+		]
 	},
 	indentSize: {
+		description: 'This number will be used as a basis for all indent levels, using the expanded format.',
 		type: 'number',
 		default: 4
+	},
+	trimLeadingZero: {
+		description: 'Trim leading zero for fractional numbers less than 1.',
+		type: 'boolean',
+		default: true
+	},
+	trimTrailingZeros: {
+		description: 'Trim trailing zeros in numbers.',
+		type: 'boolean',
+		default: true
 	},
 	maxAtRuleLength: {
 		description: 'If set to a positive integer, set a maximum width for at-rule parameters; if they exceed this, they will be split up over multiple lines. If false, this behaviour will not be performed. Note that this transform only applies to the `expanded` format.',
@@ -94,6 +133,11 @@ export const config = {
 			'number'
 		],
 		default: 80
+	},
+	zeroLengthNoUnit: {
+		description: 'Trim units after zero length.',
+		type: 'boolean',
+		default: true
 	}
 };
 
