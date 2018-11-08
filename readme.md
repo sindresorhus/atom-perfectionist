@@ -1,3 +1,9 @@
+# Deprecated
+
+The Perfectionist project is no longer maintained.
+
+---
+
 # perfectionist
 
 > Beautify CSS and SCSS with [Perfectionist](https://github.com/ben-eb/perfectionist)
